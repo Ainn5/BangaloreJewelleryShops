@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Find jewellery shops in Bengaluru area-wise. Browse gold, diamond, silver and bridal jewellery stores with addresses, phone numbers where published, and Google Maps directions.">
+<meta name="keywords" content="Bangalore jewellery shops, Bengaluru jewellers, area wise jewellery stores, gold shops Bangalore, Tanishq, Bhima, Malabar, Joyalukkas">
+<meta name="theme-color" content="#5b1838"><title>Bangalore Jewellery Shops | Area-wise Jewellery Directory</title>
+<style>
+:root{--wine:#5b1838;--gold:#c69a42;--ink:#28232a;--muted:#706873;--paper:#fffaf5;--line:#eadfe4}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--paper);color:var(--ink)}
+header{background:linear-gradient(120deg,#411329,#7a2b4c);color:#fff;padding:22px max(18px,calc((100% - 1160px)/2));}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}.owner{font-size:14px;border:1px solid #ffffff70;padding:8px 12px;border-radius:20px}
+h1{font-size:clamp(26px,4vw,42px);margin:24px 0 8px}.sub{color:#f4e7ec;max-width:720px;line-height:1.5;margin:0}
+main{max-width:1160px;margin:24px auto;padding:0 18px}.filters{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;background:white;padding:16px;border:1px solid var(--line);border-radius:16px;box-shadow:0 6px 20px #4113290b}
+input,select{width:100%;padding:13px;border:1px solid #d9cbd2;border-radius:10px;font-size:15px;background:#fff;color:var(--ink)}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.pill{background:#f2e7ec;color:var(--wine);padding:8px 12px;border-radius:30px;font-size:13px}
+h2{font-size:22px;margin:24px 0 12px}.areas{display:flex;flex-wrap:wrap;gap:8px}.area{border:1px solid var(--line);background:white;color:var(--wine);border-radius:30px;padding:8px 13px;cursor:pointer}.area.active,.area:hover{background:var(--wine);color:white}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:16px 0 30px}.shop{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:9px;min-width:0}.shop h3{margin:0;color:var(--wine);font-size:17px}.tag{font-size:12px;color:#87516a;background:#f8eef2;padding:5px 8px;border-radius:20px;display:inline-block;width:max-content}.address{font-size:13px;line-height:1.5;color:var(--muted)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}.actions a{font-size:13px;text-decoration:none;padding:9px 11px;border-radius:8px;background:var(--wine);color:white}.actions a.secondary{background:#f1e8ec;color:var(--wine)}
+.note{font-size:13px;color:var(--muted);line-height:1.55;background:#fff;border-left:3px solid var(--gold);padding:12px 14px;margin:20px 0}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:25px 18px;border-top:1px solid var(--line)}
+.empty{grid-column:1/-1;text-align:center;padding:30px;color:var(--muted);background:white;border-radius:12px}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.filters{grid-template-columns:1fr 1fr}.filters input{grid-column:1/-1}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.filters{grid-template-columns:1fr}.filters input{grid-column:auto}.top{align-items:flex-start}header{padding:18px}.shop{padding:15px}}
+</style></head>
+<body>
+<header><div class="top"><strong>💍 Bangalore Jewellery Shops</strong><span class="owner">Page Owner: Ainn</span></div><h1>Jewellery shops across Bengaluru</h1><p class="sub">Explore jewellery showrooms area-wise — gold, diamond, silver, bridal and everyday collections. Search by shop, brand or locality and open directions.</p></header>
+<main>
+<section class="filters" aria-label="Search and filters">
+<input id="search" type="search" placeholder="Search shop, brand or area…" aria-label="Search shops">
+<select id="areaFilter" aria-label="Filter by area"><option value="">All Bengaluru areas</option></select>
+<select id="typeFilter" aria-label="Filter by jewellery type"><option value="">All jewellery types</option><option>Gold</option><option>Diamond</option><option>Silver</option><option>Bridal</option><option>Fashion Jewellery</option></select>
+</section>
+<div class="stats"><span class="pill" id="count">Loading shops…</span><span class="pill">Area-wise directory</span><span class="pill">Directions via Google Maps</span></div>
+<h2>Browse by area</h2><div class="areas" id="areas"></div>
+<h2 id="resultsTitle">Jewellery shops in Bengaluru</h2><section class="grid" id="shops" aria-live="polite"></section>
+<div class="note"><strong>Before visiting:</strong> Store details and opening hours can change. Please call the showroom or check its official store locator before travelling. Compare the gold rate, making charges, stone charges, GST and buyback/exchange terms. This directory is informational and does not endorse a particular jeweller.</div>
+</main><footer>Page Owner: Ainn · Bangalore Jewellery Shops · Built for mobile, tablet and desktop</footer>
+<script>
+const shops = [
+{name:"Tanishq Jewellery – HSR Layout",area:"HSR Layout",address:"No. 6, 17th Cross, 7th Sector, HSR Layout, Bengaluru",type:["Gold","Diamond","Bridal"],brand:"Tanishq"},
+{name:"Tanishq Jewellery – Koramangala",area:"Koramangala",address:"No. 3, 100 Feet Road, 17th Main, 5th Block, Koramangala, Bengaluru",type:["Gold","Diamond","Bridal"],brand:"Tanishq"},
+{name:"Tanishq Jewellery – Jayanagar",area:"Jayanagar",address:"No. 3 (Old No. 18), 9th Main, 3rd Block, Jayanagar, Bengaluru",type:["Gold","Diamond","Bridal"],brand:"Tanishq"},
+{name:"Kalyan Jewellers – Jayanagar",area:"Jayanagar",address:"Plot No. 4, Patalamma Temple Street, New Diagonal Road, 3rd Block East, Jayanagar, Bengaluru 560011",phone:"+91 92288 57317",type:["Gold","Diamond","Bridal"],brand:"Kalyan Jewellers"},
+{name:"Raj Diamonds – Jayanagar",area:"Jayanagar",address:"701, 11th Main Road, 4th T Block East, 4th Block, Jayanagar, Bengaluru 560011",phone:"+91 80 2244 5570",type:["Diamond"],brand:"Raj Diamonds"},
+{name:"Bhima Jewellers – Jayanagar",area:"Jayanagar",address:"53, 33rd Cross Road, 4th Block, Jayanagar, Bengaluru",type:["Gold","Diamond","Silver","Bridal"],brand:"Bhima"},
+{name:"Tanishq Jewellery – Banashankari",area:"Banashankari",address:"No. 301, 100 Ft Ring Road, 3rd Stage, Banashankari, Bengaluru",type:["Gold","Diamond","Bridal"],brand:"Tanishq"},
+{name:"Mia by Tanishq – Banashankari",area:"Banashankari",address:"298 RV Chambers, 4th Phase, 7th Block, 100 Ft Ring Road, Banashankari 3rd Stage",phone:"+91 89044 61212",type:["Gold","Diamond"],brand:"Mia by Tanishq"},
+{name:"Tanishq Jewellery – Dickenson Road",area:"MG Road / Dickenson Road",address:"No. 121, Dickenson Road, next to Manipal Centre, Bengaluru 560042",phone:"+91 89513 86490",type:["Gold","Diamond","Bridal"],brand:"Tanishq"},
+{name:"Malabar Gold & Diamonds – MG Road",area:"MG Road",address:"No. 52, opposite MG Road Metro Station, Bengaluru 560001",phone:"+91 80 6912 9916",type:["Gold","Diamond","Silver","Bridal"],brand:"Malabar Gold & Diamonds"},
+{name:"Tanishq Jewellery – New BEL Road",area:"New BEL Road",address:"No. 42/4, Ground Floor, New BEL Road, Chikka Maranahalli, RMV 2nd Stage, Bengaluru",type:["Gold","Diamond","Bridal"],brand:"Tanishq"},
+{name:"Tanishq Jewellery – Malleshwaram",area:"Malleshwaram",address:"No. 11, Sampige Road, between 1st and 2nd Cross, Malleshwaram, Bengaluru",type:["Gold","Diamond","Bridal"],brand:"Tanishq"},
+{name:"Tanishq Jewellery – Marathahalli",area:"Marathahalli",address:"No. 207, next to VIMS Hospital, opposite More Megastore, Outer Ring Road, Marathahalli",type:["Gold","Diamond","Bridal"],brand:"Tanishq"},
+{name:"Bhima Jewellers – Marathahalli",area:"Marathahalli",address:"Novel MSR Park, near Marathahalli Bridge, Bengaluru 560037",phone:"+91 80 2854 6611",type:["Gold","Diamond","Silver","Bridal"],brand:"Bhima"},
+{name:"Joyalukkas Jewellery – Marathahalli",area:"Marathahalli",address:"43/1, Varthur Main Road, Jawahar Nagar, Marathahalli, Bengaluru 560037",phone:"+91 80 2507 3800",type:["Gold","Diamond","Silver","Bridal"],brand:"Joyalukkas"},
+{name:"Joyalukkas Jewellery – Phoenix Marketcity",area:"Mahadevapura",address:"No. 67, Lower Ground Floor, Phoenix Marketcity, Mahadevapura, Bengaluru 560048",phone:"+91 80 4962 6677",type:["Gold","Diamond","Silver","Bridal"],brand:"Joyalukkas"},
+{name:"Tanishq Jewellery – Whitefield",area:"Whitefield",address:"No. 300, Whitefield Main Road, near HDFC Bank, Bengaluru",type:["Gold","Diamond","Bridal"],brand:"Tanishq"},
+{name:"Tanishq – Prestige Forum Shantiniketan",area:"Whitefield / Hoodi",address:"Unit 027, Prestige Forum Shantiniketan Mall, ITPL Main Road, Hoodi, Bengaluru 560048",phone:"+91 96066 17771",type:["Gold","Diamond","Bridal"],brand:"Tanishq"},
+{name:"Malabar Gold & Diamonds – Hennur",area:"Hennur / Kothanur",address:"Ground, First and Second Floor, Hennur–Bagalur Main Road, Byrathi, Kothanur, Bengaluru 560077",phone:"+91 80 2844 0916",type:["Gold","Diamond","Silver","Bridal"],brand:"Malabar Gold & Diamonds"},
+{name:"Bhima Jewellers – HBR Layout",area:"HBR Layout",address:"No. 1015, 6th Cross, 4th Block, 1st Stage, HBR Layout, Bengaluru",phone:"+91 80 2544 7711",type:["Gold","Diamond","Silver","Bridal"],brand:"Bhima"},
+{name:"Tanishq Jewellery – Kammanahalli",area:"Kammanahalli",address:"No. 414, Kammanahalli Main Road, HRBR Layout, 2nd Block, Kalyan Nagar, Bengaluru",type:["Gold","Diamond","Bridal"],brand:"Tanishq"},
+{name:"Tanishq Jewellery – Electronic City",area:"Electronic City",address:"Neeladri Main Road, Neeladri Nagar, Doddathoguru Village, Bengaluru",type:["Gold","Diamond","Bridal"],brand:"Tanishq"},
+{name:"Tanishq Jewellery – Sarjapur Road",area:"Sarjapur Road",address:"No. 60, Plot No. 1, Doddakannelli Village, Sarjapur Road, Bengaluru",type:["Gold","Diamond","Bridal"],brand:"Tanishq"},
+{name:"Tanishq Jewellery – Yelahanka",area:"Yelahanka",address:"Opposite The Galleria Mall, BB Road, Sugappa Layout, Yelahanka, Bengaluru",type:["Gold","Diamond","Bridal"],brand:"Tanishq"},
+{name:"Tanishq Jewellery – KR Puram",area:"KR Puram",address:"Subhash Nagar, Bhattarahalli, next to Unilet Building, KR Puram, Bengaluru",type:["Gold","Diamond","Bridal"],brand:"Tanishq"},
+{name:"Tanishq Jewellery – Vijayanagar",area:"Vijayanagar",address:"1st Main Road, Vijayanagar Club Road, Bengaluru",type:["Gold","Diamond","Bridal"],brand:"Tanishq"},
+{name:"Bhima Jewellers – Rajajinagar",area:"Rajajinagar",address:"No. 54, 1st Block, next to Metro Station, Chord Road, Rajajinagar, Bengaluru",phone:"+91 80 2352 7711",type:["Gold","Diamond","Silver","Bridal"],brand:"Bhima"},
+{name:"Bhima Jewellers – RR Nagar",area:"Rajarajeshwari Nagar",address:"No. 22, Jawaharlal Nehru Road, BEML Layout 3rd Stage, RR Nagar, Bengaluru",phone:"+91 80 2323 0050",type:["Gold","Diamond","Silver","Bridal"],brand:"Bhima"},
+{name:"Tanishq Jewellery – Kanakapura Road",area:"Kanakapura Road",address:"No. 3, Raghuvanahalli Village, Uttarahalli Hobli, Kanakapura Road, Bengaluru",type:["Gold","Diamond","Bridal"],brand:"Tanishq"}
+];
+const $=id=>document.getElementById(id);let selectedArea="";
+const areaNames=[...new Set(shops.map(s=>s.area))].sort((a,b)=>a.localeCompare(b));
+areaNames.forEach(a=>{let o=document.createElement("option");o.value=a;o.textContent=a;$("areaFilter").append(o);let b=document.createElement("button");b.className="area";b.textContent=a;b.onclick=()=>{selectedArea=selectedArea===a?"":a;$("areaFilter").value=selectedArea;render()};$("areas").append(b)});
+function render(){const q=$("search").value.toLowerCase().trim(),area=$("areaFilter").value,type=$("typeFilter").value;const filtered=shops.filter(s=>(!area||s.area===area)&&(!selectedArea||s.area===selectedArea)&&(!type||s.type.includes(type))&&(!q||[s.name,s.area,s.address,s.brand,...s.type].join(" ").toLowerCase().includes(q)));$("count").textContent=filtered.length+" shops listed";$("resultsTitle").textContent=area||selectedArea? "Jewellery shops in "+(area||selectedArea):"Jewellery shops in Bengaluru";$("areas").querySelectorAll("button").forEach(b=>b.classList.toggle("active",b.textContent===(area||selectedArea)));$("shops").innerHTML="";if(!filtered.length){$("shops").innerHTML='<div class="empty">No matching shops. Try another area or search term.</div>';return}filtered.forEach(s=>{const card=document.createElement("article");card.className="shop";const maps="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(s.name+" "+s.address);card.innerHTML='<span class="tag">'+s.brand+'</span><h3></h3><div class="address"></div><div class="address">Area: '+s.area+'</div><div class="address">Collections: '+s.type.join(", ")+'</div><div class="address">'+(s.phone?'Phone: <a href="tel:'+s.phone.replace(/[^+\d]/g,"")+'">'+s.phone+'</a>':'Phone: Check official store locator')+'</div><div class="actions"><a target="_blank" rel="noopener" href="'+maps+'">Directions</a>'+(s.phone?'<a class="secondary" href="tel:'+s.phone.replace(/[^+\d]/g,"")+'">Call store</a>':'')+'</div>';card.querySelector("h3").textContent=s.name;card.querySelector(".address").textContent=s.address;$("shops").append(card)})}
+["search","areaFilter","typeFilter"].forEach(id=>$(id).addEventListener(id==="search"?"input":"change",()=>{if(id==="areaFilter")selectedArea="";render()}));render();
+</script></body></html>
